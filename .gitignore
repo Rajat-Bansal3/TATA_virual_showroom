@@ -1,0 +1,54 @@
+# Node modules directory
+**/node_modules/
+
+# Environment variable files
+**/.env
+**/.env.*
+**/.env*
+
+# Logs
+**/logs/
+**/*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Directory for log files
+**/pids/
+**/*.pid
+**/*.seed
+
+# Dependency directories
+**/jspm_packages/
+
+# Optional npm cache directory
+**/.npm/
+
+# Optional eslint cache
+**/.eslintcache
+
+# Typescript build info
+**/*.tsbuildinfo
+
+# IDEs and editors
+**/.vscode/
+**/.idea/
+**/*.suo
+**/*.ntvs*
+**/*.njsproj
+**/*.sln
+
+# macOS Finder files
+**/.DS_Store
+
+# Linux
+**/*.swp
+
+# Windows
+**/Thumbs.db
+**/Desktop.ini
+
+# Build output
+**/dist/
+**/build/
+**/out/
