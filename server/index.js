@@ -1,13 +1,13 @@
-import express from "express";
-import { configDotenv } from "dotenv";
-import mongoose from "mongoose";
-import helmet from "helmet";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import authRouter from "./routes/auth.route.js";
-import morgan from "morgan"
+const express = require("express");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const helmet = require("helmet");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const authRouter = require("./routes/auth.route.js");
+const adminRouter = require("./routes/admin.routes.js");
 
-configDotenv();
+dotenv.config();
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -22,9 +22,9 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(morgan('dev'));
 
 app.use("/auth", authRouter);
+app.use("/admin", adminRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

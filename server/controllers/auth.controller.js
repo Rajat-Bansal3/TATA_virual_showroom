@@ -1,16 +1,16 @@
-import { errorHandle } from "../lib/err";
-import User from "../models/user.model";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+const errorHandler = require("../lib/err.js");
+const User = require("../models/user.model.js");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-export const signUp = async (req, res, next) => {
+const signUp = async (req, res, next) => {
   const { username, password, role } = req.body;
 
   try {
     let user = await User.findOne({ username });
 
     if (user) {
-      return next(errorHandle(400, "User already exists"));
+      return next(errorHandler(400, "User already exists"));
     }
 
     user = new User({ username, password, role });
@@ -22,7 +22,7 @@ export const signUp = async (req, res, next) => {
 
     const payload = {
       user: {
-        id: user.id,
+        id: user._id,
         role: user.role,
       },
     };
@@ -39,7 +39,7 @@ export const signUp = async (req, res, next) => {
     return next(err);
   }
 };
-export const signIn = async (req, res, next) => {
+const signIn = async (req, res, next) => {
   const { username, password } = req.body;
 
   try {
@@ -74,5 +74,12 @@ export const signIn = async (req, res, next) => {
     return next(err);
   }
 };
-export const forgetPassword = (req, res, next) => {};
-export const resetPassword = (req, res, next) => {};
+const forgetPassword = (req, res, next) => {};
+const resetPassword = (req, res, next) => {};
+
+module.exports = {
+  signIn,
+  signUp,
+  forgetPassword,
+  resetPassword,
+};
